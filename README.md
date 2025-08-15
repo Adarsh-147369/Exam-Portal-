@@ -57,4 +57,32 @@ No backend required; all logic is in the frontend.
 5. Admin reviews results and analytics from dashboard.
 
 --
+## Project Structure
+.
+├── index.html # Main application page
+├── style.css # Styling
+├── app.js # Application logic and state management
+└── README.md # Project documentation
+
+---
+
+## Customization
+
+- Add your own subjects/notes in `app.js` for testing.
+- Enhance descriptive answer evaluation logic as needed.
+- Integrate backend/database for production use.
+
+---
+
+## License
+
+Released for educational and demonstration purposes.
+
+---
+
+## Live Demo
+
+[Try the demo here](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/ac10aaaa03911c36bf60ac379dad35e4/17438775-f377-428c-9e1e-59e495567f57/index.html)
+
+---
 
