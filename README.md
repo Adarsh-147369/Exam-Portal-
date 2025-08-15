@@ -56,7 +56,5 @@ No backend required; all logic is in the frontend.
 4. System evaluates responses, displays scores & correct answers.
 5. Admin reviews results and analytics from dashboard.
 
----
-
-## Project Structure
+--
 
