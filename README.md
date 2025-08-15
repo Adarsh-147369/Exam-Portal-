@@ -47,15 +47,7 @@ No backend required; all logic is in the frontend.
 
 ---
 
-## Usage
 
-**Admin Credentials**
-- Email: `admin@example.com`
-- Password: `admin123`
-
-**Student Credentials (sample)**
-- Email: `student@example.com`
-- Password: `password123`
 
 **Flow**
 1. Admin logs in, manages subjects and uploads notes.
