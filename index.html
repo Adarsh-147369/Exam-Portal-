@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Generation & Evaluation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2>Exam</h2>
+            </div>
+            <div class="nav-links">
+                <button id="homeBtn" class="btn btn--outline btn--sm">Home</button>
+                <button id="loginBtn" class="btn btn--primary btn--sm">Login</button>
+                <button id="logoutBtn" class="btn btn--secondary btn--sm hidden">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Screen -->
+    <div id="homeScreen" class="screen">
+        <div class="container">
+            <div class="hero-section">
+                <h1>Welcome to EduExam</h1>
+                <p>Advanced Question Generation and Answer Evaluation System</p>
+                <div class="hero-actions">
+                    <button id="adminLoginBtn" class="btn btn--primary btn--lg">Admin Login</button>
+                    <button id="studentLoginBtn" class="btn btn--secondary btn--lg">Student Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen hidden">
+        <div class="container">
+            <div class="login-container">
+                <div class="card">
+                    <div class="card__header">
+                        <h3 id="loginTitle">Admin Login</h3>
+                    </div>
+                    <div class="card__body">
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="loginEmail" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" id="loginPassword" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                        </form>
+                        <div id="registerLink" class="text-center mt-16">
+                            <p>Don't have an account? <a href="#" id="showRegister">Register here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Screen -->
+    <div id="registerScreen" class="screen hidden">
+        <div class="container">
+            <div class="login-container">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Student Registration</h3>
+                    </div>
+                    <div class="card__body">
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" id="registerName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="registerEmail" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" id="registerPassword" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width">Register</button>
+                        </form>
+                        <div class="text-center mt-16">
+                            <p>Already have an account? <a href="#" id="showLogin">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="screen hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Admin Dashboard</h2>
+                <div class="admin-nav">
+                    <button id="subjectsTabBtn" class="btn btn--primary">Subjects</button>
+                    <button id="questionsTabBtn" class="btn btn--secondary">Questions</button>
+                    <button id="resultsTabBtn" class="btn btn--secondary">Results</button>
+                </div>
+            </div>
+
+            <!-- Subjects Management -->
+            <div id="subjectsTab" class="tab-content">
+                <div class="section-header">
+                    <h3>Subject Management</h3>
+                    <button id="addSubjectBtn" class="btn btn--primary">Add Subject</button>
+                </div>
+                <div id="subjectsList" class="subjects-grid"></div>
+            </div>
+
+            <!-- Questions Management -->
+            <div id="questionsTab" class="tab-content hidden">
+                <div class="section-header">
+                    <h3>Generated Questions</h3>
+                    <select id="questionSubjectFilter" class="form-control" style="width: 200px;">
+                        <option value="">All Subjects</option>
+                    </select>
+                </div>
+                <div id="questionsList"></div>
+            </div>
+
+            <!-- Results Management -->
+            <div id="resultsTab" class="tab-content hidden">
+                <div class="section-header">
+                    <h3>Student Results</h3>
+                </div>
+                <div id="resultsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="studentDashboard" class="screen hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Student Dashboard</h2>
+                <div class="student-nav">
+                    <button id="examTabBtn" class="btn btn--primary">Take Exam</button>
+                    <button id="myResultsTabBtn" class="btn btn--secondary">My Results</button>
+                </div>
+            </div>
+
+            <!-- Available Exams -->
+            <div id="examTab" class="tab-content">
+                <h3>Available Subjects</h3>
+                <div id="availableSubjects" class="subjects-grid"></div>
+            </div>
+
+            <!-- Student Results -->
+            <div id="myResultsTab" class="tab-content hidden">
+                <h3>My Results</h3>
+                <div id="studentResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exam Interface -->
+    <div id="examInterface" class="screen hidden">
+        <div class="exam-header">
+            <div class="container">
+                <div class="exam-info">
+                    <h3 id="examSubjectName"></h3>
+                    <div class="exam-timer">
+                        <span>Time Remaining: </span>
+                        <span id="timerDisplay">30:00</span>
+                    </div>
+                </div>
+                <div class="exam-progress">
+                    <span id="questionProgress">Question 1 of 10</span>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="exam-content">
+                <div id="questionContainer" class="question-container"></div>
+                <div class="exam-navigation">
+                    <button id="prevQuestionBtn" class="btn btn--secondary">Previous</button>
+                    <button id="nextQuestionBtn" class="btn btn--primary">Next</button>
+                    <button id="submitExamBtn" class="btn btn--primary hidden">Submit Exam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Display -->
+    <div id="resultsDisplay" class="screen hidden">
+        <div class="container">
+            <div class="results-container">
+                <h2>Exam Results</h2>
+                <div id="resultsContent"></div>
+                <button id="backToDashboardBtn" class="btn btn--primary">Back to Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    
+    <!-- Add Subject Modal -->
+    <div id="addSubjectModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Subject</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addSubjectForm">
+                    <div class="form-group">
+                        <label class="form-label">Subject Name</label>
+                        <input type="text" id="subjectName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <input type="text" id="subjectDescription" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Study Notes</label>
+                        <textarea id="subjectNotes" class="form-control" rows="8" placeholder="Paste your study notes here..." required></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn--secondary modal-close">Cancel</button>
+                        <button type="submit" class="btn btn--primary">Generate Questions</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="loading-spinner"></div>
+                <h3>Generating Questions...</h3>
+                <p>Analyzing your notes and creating intelligent questions. This may take a moment.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="confirmTitle">Confirm Action</h3>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage"></p>
+                <div class="modal-actions">
+                    <button id="confirmCancel" class="btn btn--secondary">Cancel</button>
+                    <button id="confirmOk" class="btn btn--primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
